@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class NamiWrapper | namitools</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+		</div>
+
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-NamiWrapper.html">NamiWrapper</a></li>
+				<li><a href="class-NWRequestAnswer.html">NWRequestAnswer</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class NamiWrapper</h1>
+
+
+	<div class="description">
+	<p>Die NamiWrapper-Klasse dient dazu, Anfragen an die Nami durchzuführen.</p>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+			<b>Located at</b> <a href="source-class-NamiWrapper.html#20-419" title="Go to source code">NamiWrapper.class.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-NamiWrapper.html#57-198" title="Go to source code">__construct</a>( <span>mixed <var>$config</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$password</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Konstruktor. Der Konstruktor kann auf drei Arten aufgerufen werden:</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Konstruktor. Der Konstruktor kann auf drei Arten aufgerufen werden:</p>
+
+<ol>
+<li><p>Ohne Übergabe von Parametern: <code>new NamiWrapper()</code>. Login-Daten müssen dann der ´login´-Funktion übergeben werden.</p></li>
+<li><p>Mit Übergabe von Nutzername und Passwort: <code>new NamiWrapper('123456', 'password1234')</code>. Ein Login kann mittels der <code>login</code>-Funktion durchgeführt werden oder er wird automatisch bei Bedarf durchgeführt.</p></li>
+<li><p>Mit Übergabe eines Arrays: <code>new NamiWrapper(['username' =&gt; '123456', 'password' =&gt; 'password1234', 'iniFile' =&gt; 'custom.ini'])</code>. Folgende Schlüssel können gesetzt werden:</p>
+
+<ul>
+<li>iniFile: Standardwert: <code>nami.ini</code>. Eine Konfigurationsdatei, die im wesentlichen die selben Parameter  erwartet, wie $config. Neben <code>nami.ini</code> wird auch <code>namitest.ini</code> mitgeliefert. Eigene Konfigurationsdateien können selbstverständlich auch erstellt werden. Soll keine Konfigurationsdatei verarbeitet werden, so kann <code>no.ini</code> übergeben werden.</li>
+<li>serverURL: Standardwert: <code>https://nami.dpsg.de</code>. URL des Servers, auf dem die NaMi-API verfügbar ist.</li>
+<li>serverApiPath: Standardwert: <code>/ica/rest/</code>. Pfad unter dem die API erreicht werden kann.</li>
+<li>serverLoginLoginValue: Standartwert: <code>API</code>. Wert, der bei Login-Anfragen an die API im Feld <code>Login</code> geschickt wird.</li>
+<li>APIVersionMajor: Standardwert: <code>1</code>. Hauptversionsnummer der API.</li>
+<li>APIVersionMinor: Standardwert: <code>2</code>. Nebenversionsnummer der API.</li>
+<li>timeout: Standartwert: <code>7.0</code>. Zeit, nach der Anfragen an die API abgebrochen werden.</li>
+<li>saveCookieInFile: Standardwert: <code>false</code>. Legt fest, ob die aktuelle Session in einer Datei gespeichert werden soll.</li>
+<li>cookieFile: Standardwert: <code>tmp/cookie.tmp</code>. Pfad zu der Datei, in der ggf. die aktuelle Session gespeichert werden soll. Achtung! Stellen Sie sicher, dass auf diese Datei nicht aus dem Weg zugegriffen werden kann. Zur Sicherheit werden nur 1. absolute Pfade und 2. Pfade der Form <code>pfad/zu/datei.ext</code> akzeptiert. Zweite werden an <code>pfad/zu/simpleNaMiAPI/</code> angehängt.</li>
+<li>createDirectoryMode: Standardwert <code>0600</code>. Zugriffsberechtigung, mit der ggf. das Verzeichnis der Cookie-Datei erstellt wird (Suche nach chmod).</li>
+<li>unsername: Standardwert: <code>null</code>. Benutzername, der beim Login verwendet werden soll. Kann auch bei einer expliziten Login-Anfrage erst übergeben werden (vgl. Funktion <code>login()</code>).</li>
+<li>password: Standardwert: <code>null</code>. Passwort, das beim Login verwendet werden soll. Kann auch bei einer expliziten Login-Anfrage erst übergeben werden (vgl. Funktion <code>login()</code>).</li>
+<li>apiSessionNameRef: Standardmäßig nicht gesetzt. Wert muss als Referenz übergeben werden! Referenziert immer den Namen der aktuellen Session. Kann genutzt werden, um die aktuelle Session in der PHP-Session des Nutzers zu speichern: <code>$namiOpts['apiSessionNameRef'] =&amp; $_SESSION['apiSessionName']; (…) $nw = new NamiWrapper($namiOpts);</code></li>
+<li>apiSessionTokenRef: Standardmäßig nicht gesetzt. Wert muss als Referenz übergeben werden! Referenziert immer das Token der aktuellen Session. Kann genutzt werden, um die aktuelle Session in der PHP-Session des Nutzers zu speichern: <code>$namiOpts['apiSessionTokenRef'] =&amp; $_SESSION['apiSessionToken']; (…) $nw = new NamiWrapper($namiOpts);</code></li>
+</ul></li>
+</ol>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$config</var></dt>
+					<dd>Der Benutzername, ein Array mit Parametern oder <code>null</code>.</dd>
+					<dt><var>$password</var></dt>
+					<dd>Das Passwort oder <code>null</code>.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getLogin" id="_getLogin">
+
+		<td class="attributes"><code>
+			 public 
+
+			object
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getLogin">#</a>
+		<code><a href="source-class-NamiWrapper.html#242-253" title="Go to source code">getLogin</a>( )</code>
+
+		<div class="description short">
+			<p>Gibt die Nami-Antwort auf die letzte Login-Anfrage zurück.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Gibt die Nami-Antwort auf die letzte Login-Anfrage zurück.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					object<br><p>Nami-Antwort auf die letzte Login-Anfrage. Falls bislang keine
+Login-Anfrage gestellt wurde, wird <code>null</code> zurück gegeben. Falls die Session
+zwischenzeitlich abgemeldet wurde oder ausgelaufen ist, sind die Daten veraltet.</p>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="request" id="_request">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_request">#</a>
+		<code><a href="source-class-NamiWrapper.html#255-361" title="Go to source code">request</a>( <span>string <var>$method</var></span>, <span>string <var>$resource</var></span>, <span>object <var>$content</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$apiMajor</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$apiMinor</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$encoding</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$autoLogin</var> = <span class="php-keyword1">true</span></span> )</code>
+
+		<div class="description short">
+			<p>Funktion zum Durchführen von Anfragen an die Nami.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Funktion zum Durchführen von Anfragen an die Nami.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$method</var></dt>
+					<dd>Die zu verwendende HTTP-Methode (siehe Klassenkonstanten).</dd>
+					<dt><var>$resource</var></dt>
+					<dd><p>Die betroffene Ressource (Teil der URL, der nach <code>service/</code>
+kommt).</p></dd>
+					<dt><var>$content</var></dt>
+					<dd><p><code>null</code> oder Objekt, abhängig von Methode und Ressource.
+Wird JSON- bzw. URL-kodiert.</p></dd>
+					<dt><var>$apiMajor</var></dt>
+					<dd><p>Hauptversionsnummer der API (int) oder <code>login</code>, falls
+eine Login-Abfrage geschickt werden soll. Optional, falls ein Standardwert gesetzt wurde.</p></dd>
+					<dt><var>$apiMinor</var></dt>
+					<dd><p>Nebenversionsnummer der API (int) oder <code>null</code>, falls
+eine Login-Abfrage geschickt werden soll. Optional, falls ein Standardwert gesetzt wurde.</p></dd>
+					<dt><var>$encoding</var></dt>
+					<dd><p>Optional. <code>NamiWrapper::ENCODING_JSON</code> sorgt für eine
+JSON-Kodierung (Standardwert für POST- und PUT-Anfragen), <code>NamiWrapper::ENCODING_URL</code>
+sorg für URL-Kodierung (wird vmtl. ausschließlich bei Login-Anfragen erwartet),
+<code>NamiWrapper::ENCODING_JSON_MANUAL</code> erwartet bereits JSON-kodierten Inhalt und
+<code>NamiWrapper::ENCODING_NO_CONTENT</code> (Standard für GET- und DELETE-Anfragen) bedeutet,
+dass kein Inhalt gesendet wird.</p></dd>
+					<dt><var>$autoLogin</var></dt>
+					<dd><p>Optional. Standardmäßig wird ein automatischer Login-Versuch
+unternommen. Falls <code>$autoLogin</code> <code>false</code> ist, wird dies unterlassen.</p></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="login" id="_login">
+
+		<td class="attributes"><code>
+			 public 
+
+			object
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_login">#</a>
+		<code><a href="source-class-NamiWrapper.html#363-401" title="Go to source code">login</a>( <span>string <var>$username</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$password</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Startet eine Session.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Startet eine Session.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$username</var></dt>
+					<dd><p>Optional. Der Benutzername, der zum Login verwendet
+werden soll. Wird kein Benutzername übergeben, wird der im Konstruktor angegebene
+Nutzername verwendet.</p></dd>
+					<dt><var>$password</var></dt>
+					<dd><p>Optional. Das Passwort, das zum Login verwendet werden
+soll. Wird kein Passwort übergeben, wird das im Konstruktor angegebene Passwort
+verwendet.</p></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					object<br>Die Antwort auf die Login-Anfrage.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="logout" id="_logout">
+
+		<td class="attributes"><code>
+			 public 
+
+			object
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_logout">#</a>
+		<code><a href="source-class-NamiWrapper.html#403-418" title="Go to source code">logout</a>( <span>boolean <var>$deleteLoginCredentials</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			<p>Beendet die aktuelle Session.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Beendet die aktuelle Session.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$deleteLoginCredentials</var></dt>
+					<dd><p>Optional. Falls <code>$deleteLoginCredentials</code>
+<code>true</code> ist, werden eventuell an den Konstruktor übergebene Anmeldedaten gelöscht.
+Standardwert ist <code>false</code>.</p></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					object<br><p>Die Antwort auf die Logout-Anfrage. (Hinweis: Derzeit scheint
+NaMi keine Antwort auf Logout-Anfragen zu geben. Es wird deshalb eine Antwort
+mit dem (von dieser Klasse eingeführten) Statuscode 6002 zurück gegeben.</p>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+	<table class="summary constants" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="METHOD_POST" id="METHOD_POST">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#24" title="Go to source code"><b>METHOD_POST</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#METHOD_POST" class="anchor">#</a>
+				<code><span class="php-quote">'POST'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="OPERATION_CREATE" id="OPERATION_CREATE">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#25" title="Go to source code"><b>OPERATION_CREATE</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#OPERATION_CREATE" class="anchor">#</a>
+				<code><code><a href="class-NamiWrapper.html#METHOD_POST">NamiWrapper::<b>METHOD_POST</b></a></code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="METHOD_PUT" id="METHOD_PUT">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#26" title="Go to source code"><b>METHOD_PUT</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#METHOD_PUT" class="anchor">#</a>
+				<code><span class="php-quote">'PUT'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="OPERATION_UPDATE" id="OPERATION_UPDATE">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#27" title="Go to source code"><b>OPERATION_UPDATE</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#OPERATION_UPDATE" class="anchor">#</a>
+				<code><code><a href="class-NamiWrapper.html#METHOD_PUT">NamiWrapper::<b>METHOD_PUT</b></a></code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="METHOD_GET" id="METHOD_GET">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#28" title="Go to source code"><b>METHOD_GET</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#METHOD_GET" class="anchor">#</a>
+				<code><span class="php-quote">'GET'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="OPERATION_READ" id="OPERATION_READ">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#29" title="Go to source code"><b>OPERATION_READ</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#OPERATION_READ" class="anchor">#</a>
+				<code><code><a href="class-NamiWrapper.html#METHOD_GET">NamiWrapper::<b>METHOD_GET</b></a></code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="METHOD_DELETE" id="METHOD_DELETE">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#30" title="Go to source code"><b>METHOD_DELETE</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#METHOD_DELETE" class="anchor">#</a>
+				<code><span class="php-quote">'DELETE'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="OPERATION_DELETE" id="OPERATION_DELETE">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#31" title="Go to source code"><b>OPERATION_DELETE</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#OPERATION_DELETE" class="anchor">#</a>
+				<code><code><a href="class-NamiWrapper.html#METHOD_DELETE">NamiWrapper::<b>METHOD_DELETE</b></a></code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="STATUS_CODE_OK" id="STATUS_CODE_OK">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#33" title="Go to source code"><b>STATUS_CODE_OK</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#STATUS_CODE_OK" class="anchor">#</a>
+				<code><span class="php-num">0</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="STATUS_CODE_EXPIRED" id="STATUS_CODE_EXPIRED">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#34" title="Go to source code"><b>STATUS_CODE_EXPIRED</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#STATUS_CODE_EXPIRED" class="anchor">#</a>
+				<code><span class="php-num">3000</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="STATUS_CODE_AUTH_ERR" id="STATUS_CODE_AUTH_ERR">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#35" title="Go to source code"><b>STATUS_CODE_AUTH_ERR</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#STATUS_CODE_AUTH_ERR" class="anchor">#</a>
+				<code><span class="php-num">3001</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="STATUS_CODE_EXCEPTION" id="STATUS_CODE_EXCEPTION">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#36" title="Go to source code"><b>STATUS_CODE_EXCEPTION</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#STATUS_CODE_EXCEPTION" class="anchor">#</a>
+				<code><span class="php-num">3002</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="STATUS_CODE_UNKNOWN_ERR" id="STATUS_CODE_UNKNOWN_ERR">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#37" title="Go to source code"><b>STATUS_CODE_UNKNOWN_ERR</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#STATUS_CODE_UNKNOWN_ERR" class="anchor">#</a>
+				<code><span class="php-num">3099</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="STATUS_CODE_INVALID_JSON" id="STATUS_CODE_INVALID_JSON">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#40" title="Go to source code"><b>STATUS_CODE_INVALID_JSON</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#STATUS_CODE_INVALID_JSON" class="anchor">#</a>
+				<code><span class="php-num">6001</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="STATUS_CODE_CONNECTION_FAILED" id="STATUS_CODE_CONNECTION_FAILED">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#41" title="Go to source code"><b>STATUS_CODE_CONNECTION_FAILED</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#STATUS_CODE_CONNECTION_FAILED" class="anchor">#</a>
+				<code><span class="php-num">6002</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="MIME_JSON" id="MIME_JSON">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#43" title="Go to source code"><b>MIME_JSON</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#MIME_JSON" class="anchor">#</a>
+				<code><span class="php-quote">'application/json'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="MIME_URL_ENCODED" id="MIME_URL_ENCODED">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#44" title="Go to source code"><b>MIME_URL_ENCODED</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#MIME_URL_ENCODED" class="anchor">#</a>
+				<code><span class="php-quote">'application/x-www-form-urlencoded'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="ENCODING_JSON" id="ENCODING_JSON">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#46" title="Go to source code"><b>ENCODING_JSON</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#ENCODING_JSON" class="anchor">#</a>
+				<code><span class="php-quote">'json'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="ENCODING_URL" id="ENCODING_URL">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#47" title="Go to source code"><b>ENCODING_URL</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#ENCODING_URL" class="anchor">#</a>
+				<code><span class="php-quote">'url'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="ENCODING_JSON_MANUAL" id="ENCODING_JSON_MANUAL">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#48" title="Go to source code"><b>ENCODING_JSON_MANUAL</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#ENCODING_JSON_MANUAL" class="anchor">#</a>
+				<code><span class="php-quote">'jsonManual'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="ENCODING_NO_CONTENT" id="ENCODING_NO_CONTENT">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name">
+			<code>
+				<a href="source-class-NamiWrapper.html#49" title="Go to source code"><b>ENCODING_NO_CONTENT</b></a>
+			</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#ENCODING_NO_CONTENT" class="anchor">#</a>
+				<code><span class="php-quote">'noContent'</span></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		namitools API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
